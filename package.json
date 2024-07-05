@@ -1,0 +1,18 @@
+{
+  "name": "hng-stage-2",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000H\u0000N\u0000G\u0000_\u0000S\u0000T\u0000A\u0000G\u0000E\u00002\u0000_\u0000T\u0000A\u0000S\u0000K\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "devDependencies": {
+    "prisma": "^5.16.1"
+  }
+}
