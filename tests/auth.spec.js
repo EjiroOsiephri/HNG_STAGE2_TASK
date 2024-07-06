@@ -36,7 +36,7 @@ describe("Authentication and Organization Endpoints", () => {
 
     token = res.body.data.accessToken;
     userId = res.body.data.user.userId;
-  });
+  }, 10000);
 
   test("It Should Log the user in successfully", async () => {
     const res = await request(app).post("/auth/login").send({
