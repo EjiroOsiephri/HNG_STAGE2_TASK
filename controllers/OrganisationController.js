@@ -69,8 +69,6 @@ const createUserOrganisation = async (req, res) => {
 
   const userId = req.user;
 
-  console.log(userId);
-
   if (!userId) {
     return res.status(400).json({
       status: "Bad request",
@@ -82,8 +80,6 @@ const createUserOrganisation = async (req, res) => {
     const userExists = await prisma.user.findUnique({
       where: { userId },
     });
-
-    console.log(userExists);
 
     if (!userExists) {
       return res.status(404).json({
