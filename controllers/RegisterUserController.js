@@ -44,7 +44,7 @@ const registerUserController = async (req, res) => {
     });
 
     const token = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "1d",
     });
 
     res.status(201).json({

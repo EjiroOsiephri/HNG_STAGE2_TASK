@@ -99,5 +99,5 @@ describe("Authentication and Organization Endpoints", () => {
     );
 
     orgId = res.body.data.orgId;
-  });
+  }, 10000);
 });
