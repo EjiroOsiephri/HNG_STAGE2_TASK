@@ -47,6 +47,7 @@ const loginUserController = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       status: "Bad request",
       message: "Authentication failed",

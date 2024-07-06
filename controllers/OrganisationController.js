@@ -68,15 +68,33 @@ const createUserOrganisation = async (req, res) => {
   }
 
   try {
+    // Ensure req.user.userId is defined (assuming it's set by your authentication middleware)
+    if (!req.user) {
+      console.log(req.user);
+      return res.status(401).json({
+        status: "Unauthorized",
+        message: "User not authenticated or session expired",
+      });
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { userId: req.user },
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        status: "Not Found",
+        message: "User not found",
+      });
+    }
+
     const organisation = await prisma.organisation.create({
       data: {
         name,
         description,
         users: {
           create: {
-            user: {
-              connect: { userId: req?.user?.userId },
-            },
+            userId: req.user,
           },
         },
       },
@@ -95,7 +113,6 @@ const createUserOrganisation = async (req, res) => {
     });
   }
 };
-
 const addUserToAParticularOrganisation = async (req, res) => {
   const { orgId } = req.params;
   const { userId } = req.body;

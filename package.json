@@ -1,10 +1,10 @@
 {
   "name": "hng-stage-2",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000H\u0000N\u0000G\u0000_\u0000S\u0000T\u0000A\u0000G\u0000E\u00002\u0000_\u0000T\u0000A\u0000S\u0000K\u0000\r\u0000 \u0000",
+  "description": "HNG WANT TO KILL ME O",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test jest",
     "dev": "nodemon server.js"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "supertest": "^7.0.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "prisma": "^5.16.1"
   }
 }

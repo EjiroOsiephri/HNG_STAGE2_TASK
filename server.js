@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.NODE_ENV === "test" ? 4000 : process.env.PORT || 3000;
 
 const app = express();
 
@@ -17,8 +17,10 @@ app.use("/auth", userRoutes);
 app.use("/api/users", checkUserRoutes);
 app.use("/api/organisations", organisationsRoute);
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on PORT ${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Server is listening on PORT ${PORT}`);
+  });
+}
 
 module.exports = app;
