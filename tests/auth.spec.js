@@ -1,9 +1,8 @@
 const app = require("../server");
 const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
-const request = require("supertest");
-
 const prisma = new PrismaClient();
+const request = require("supertest");
 
 describe("Authentication and Organization Endpoints", () => {
   beforeAll(async () => {
