@@ -7,12 +7,18 @@ const {
 } = require("../controllers/OrganisationController");
 
 const auth = require("../middlewares/AuthMiddleware");
+const checkAuthHeader = require("../middlewares/CheckAuthHeaderMiddleware");
 
 const Router = express.Router();
 
-Router.get("/", auth, getAllUserOrganisation);
-Router.get("/:orgId", auth, getUserOrganisationById);
-Router.post("/", auth, createUserOrganisation);
-Router.post("/:orgId/users", auth, addUserToAParticularOrgainisation);
+Router.get("/", checkAuthHeader, auth, getAllUserOrganisation);
+Router.get("/:orgId", checkAuthHeader, auth, getUserOrganisationById);
+Router.post("/", checkAuthHeader, auth, createUserOrganisation);
+Router.post(
+  "/:orgId/users",
+  checkAuthHeader,
+  auth,
+  addUserToAParticularOrgainisation
+);
 
 module.exports = Router;
