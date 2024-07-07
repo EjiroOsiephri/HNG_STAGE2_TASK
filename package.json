@@ -4,6 +4,7 @@
   "description": "HNG WANT TO KILL ME O",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "cross-env NODE_ENV=test jest",
     "dev": "nodemon server.js"
   },
