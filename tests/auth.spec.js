@@ -1,6 +1,8 @@
-const request = require("supertest");
-const { PrismaClient } = require("@prisma/client");
 const app = require("../server");
+const jwt = require("jsonwebtoken");
+const { PrismaClient } = require("@prisma/client");
+const request = require("supertest");
+
 const prisma = new PrismaClient();
 
 describe("Authentication and Organization Endpoints", () => {
@@ -17,6 +19,20 @@ describe("Authentication and Organization Endpoints", () => {
   let token;
   let userId;
   let orgId;
+
+  test("Ensure token expires at the correct time and correct user details are found in the token", () => {
+    const user = { userId: "123", email: "test@example.com" };
+    const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1d" });
+
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    expect(decodedToken.userId).toEqual(user.userId);
+    expect(decodedToken.email).toEqual(user.email);
+
+    const exp = new Date(decodedToken.exp * 1000);
+    const now = new Date();
+    const diff = exp.getTime() - now.getTime();
+    expect(diff).toBeLessThanOrEqual(24 * 60 * 60 * 1000);
+  });
 
   test("It Should Register User Successfully with Default Organisation", async () => {
     const res = await request(app).post("/auth/register").send({
