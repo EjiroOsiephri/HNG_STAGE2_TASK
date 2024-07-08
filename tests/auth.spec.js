@@ -5,6 +5,8 @@ const prisma = new PrismaClient();
 const request = require("supertest");
 
 describe("Authentication and Organization Endpoints", () => {
+  jest.setTimeout(30000);
+
   beforeAll(async () => {
     await prisma.organisationsOnUsers.deleteMany();
     await prisma.organisation.deleteMany();

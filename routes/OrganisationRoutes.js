@@ -14,6 +14,11 @@ const Router = express.Router();
 Router.get("/", checkAuthHeader, auth, getAllUserOrganisation);
 Router.get("/:orgId", checkAuthHeader, auth, getUserOrganisationById);
 Router.post("/", checkAuthHeader, auth, createUserOrganisation);
-Router.post("/:orgId/users", addUserToAParticularOrgainisation);
+Router.post(
+  "/:orgId/users",
+  checkAuthHeader,
+  auth,
+  addUserToAParticularOrgainisation
+);
 
 module.exports = Router;
